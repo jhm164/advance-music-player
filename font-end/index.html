@@ -36,7 +36,7 @@
     var player = dashjs.MediaPlayer().create();
 
     // URL of the MPD file (replace with your actual MPD URL)
-    var mpdUrl = 'http://localhost:8000/output_64k.mpd';
+    var mpdUrl = 'http://localhost:8000/output/output_64k.mpd';
 
     // Initialize the player with the MPD URL
     player.initialize(document.querySelector("#audio-player"), mpdUrl, true);
@@ -57,8 +57,8 @@
     // Start the player
     // player.setAutoStart(true);
 
-    player.setAutoPlay(true); // Auto start playback when buffer is ready
-    player.setInitialBitrateFor('audio', 64000); // Set initial bitrate to 128k
+    // player.setAutoPlay(true); // Auto start playback when buffer is ready
+    // player.setInitialBitrateFor('audio', 64000); // Set initial bitrate to 128k
   </script>
 
 </body>

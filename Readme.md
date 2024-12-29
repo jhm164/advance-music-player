@@ -30,4 +30,7 @@ DASH chunks for each quality level are saved in the specified directory.
 
 ### How to serve content 
  - go to `process-music-file\dash_chunks`
- - Run command `python -m http.server 8000 --bind 0.0.0.0`
+ - start server to host chunks and its mpd files by running following command
+    `python process-music-file\startBackend.py` 
+ - Run command to start front end
+    `python -m http.server 4000 --bind 0.0.0.0`
