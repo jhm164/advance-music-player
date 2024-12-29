@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DASH Audio Streaming Example</title>
+  
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    video {
+      width: 80%;
+      max-width: 600px;
+      height: 50px;
+    }
+  </style>
+    <!-- Include Dash.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/3.2.1/dash.all.min.js"></script>
+
+</head>
+<body>
+
+  <h1>DASH Audio Streaming Example</h1>
+  
+  <!-- Audio player for DASH streaming -->
+  <video id="audio-player" controls>
+    Your browser does not support the audio element.
+  </video>
+
+  <script>
+    // Initialize Dash.js player
+    var player = dashjs.MediaPlayer().create();
+
+    // URL of the MPD file (replace with your actual MPD URL)
+    var mpdUrl = 'http://localhost:8000/output_64k.mpd';
+
+    // Initialize the player with the MPD URL
+    player.initialize(document.querySelector("#audio-player"), mpdUrl, true);
+
+    // Optional: Handle events for debugging or user interaction
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_ENDED, function() {
+      console.log('Playback has ended');
+    });
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_ERROR, function(event) {
+      console.error('Playback error:', event);
+    });
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_PROGRESS, function(event) {
+      console.log('Current playback time:', event.data);
+    });
+
+    // Start the player
+    // player.setAutoStart(true);
+
+    player.setAutoPlay(true); // Auto start playback when buffer is ready
+    player.setInitialBitrateFor('audio', 64000); // Set initial bitrate to 128k
+  </script>
+
+</body>
+</html>
